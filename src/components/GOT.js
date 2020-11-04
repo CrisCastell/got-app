@@ -1,10 +1,13 @@
 import React from 'react'
 import View from './View'
+import BigLoading from './BigLoading'
+import SmallLoading from './SmallLoading'
 
 class GOT extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            contentLoaded:true,
             characters:[],
             houses:[],
             info:{
@@ -52,6 +55,7 @@ class GOT extends React.Component {
     }
 
     componentDidMount(){
+        this.setState({contentLoaded:false})
         fetch('https://cristiamportfolioapis.herokuapp.com/got/char-list')
         .then(response => response.json())
         .then(data => {
@@ -69,7 +73,8 @@ class GOT extends React.Component {
                     pic:data[0].pict,
                     house:this.state.houses.find((house) => house.id === data[0].house.id),
                     appearances:data[0].appearances
-                }
+                },
+                contentLoaded:true
             })
         }).catch(err => console.log("Error: ", err))
 
@@ -85,36 +90,63 @@ class GOT extends React.Component {
         return(
             <div className="content">
 
-                <div className="house-box">
-                    <div className="house-wrapper">
+                <div className="house-box ">
+                    {!this.state.contentLoaded ? (
+                        <div className="house-wrapper">
+                        
+                            <div className="house"><SmallLoading /></div>
+                            <div className="house"><SmallLoading /></div>
+                            <div className="house"><SmallLoading /></div>
+                            <div className="house"><SmallLoading /></div>
+                        </div>
+                    ) :(
+                        <div className="house-wrapper">
                         {this.state.houses.map((house) =>{
-                            return (
-                                <div key={house.id} className={"house"} onClick={() => {this.houseClick(house)}} >
-                                    <img src={house.pic} alt={house.name}></img>
-                                </div>
-                            )
-                        })}
-                    </div>
+                                return (
+                                    <div key={house.id} className={"house"} onClick={() => {this.houseClick(house)}} >
+                                        <img src={house.pic} alt={house.name}></img>
+                                    </div>
+                                )
+                            })
+                        }
+                        </div>
+                    )}
+                    
                     
                 </div>
 
-
-                <View first={this.state.info.first} 
-                last={this.state.info.last} 
-                age={this.state.info.age}
-                status={this.state.info.status}
-                pic={this.state.info.pic}
-                house={this.state.info.house}
-                titles={this.state.info.titles}
-                appearances={this.state.info.appearances}
-                weapon={this.state.info.weapon}
-                 />
+                {!this.state.contentLoaded ? (
+                        <div className="info-box">
+                            <BigLoading />
+                        </div>
+                    ) :(
+                        <View first={this.state.info.first} 
+                        last={this.state.info.last} 
+                        age={this.state.info.age}
+                        status={this.state.info.status}
+                        pic={this.state.info.pic}
+                        house={this.state.info.house}
+                        titles={this.state.info.titles}
+                        appearances={this.state.info.appearances}
+                        weapon={this.state.info.weapon}
+                        />
+                    )}        
+                
                 
     
                 
 
                 <div className="character-box">
-                    <div className="character-wrapper">
+                {!this.state.contentLoaded ? (
+                        <div className="character-wrapper">
+                        
+                            <div className="character"><SmallLoading /></div>
+                            <div className="character"><SmallLoading /></div>
+                            <div className="character"><SmallLoading /></div>
+                            <div className="character"><SmallLoading /></div>
+                        </div>
+                    ) :(
+                        <div className="character-wrapper">
                         
                         {this.state.characters.map((character) =>{
                             return(
@@ -128,7 +160,9 @@ class GOT extends React.Component {
                             )
                         })} 
                         
-                    </div>
+                        </div>
+                )}
+                    
                 </div>
             </div>
         )
