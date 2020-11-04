@@ -1,0 +1,338 @@
+
+.App-header {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  text-align: center;
+  background-color: #777;
+  
+}
+
+
+
+.content {
+  background-color:#282c34;
+  color: #282c34;
+  border:1px solid black;
+  box-shadow: 5px 5px 20px;
+  padding:1rem;
+  height: 80vh;
+  width: 60vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+/*common classes*/
+*{
+  font-family: 'Syne Tactile', cursive;
+}
+.container {
+  background-color: #aaa;
+  -moz-box-shadow:    inset 0 0 10px #000000;
+  -webkit-box-shadow: inset 0 0 10px #000000;
+  box-shadow:         inset 0 0 10px #000000;
+}
+
+.character, .house {
+  padding: 0 1rem;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-size:12px;
+  margin: 1rem 0;
+  cursor: pointer;
+  transition:200ms all linear;
+}
+.character:hover, .house:hover{
+  scale: 1.05;
+  filter: brightness(110%);
+}
+
+.loading-character, .loading-house{
+  background-color: #555;
+  width: 150px;
+  height: 150px;
+  animation-name: blink;
+  animation-duration: infinite;
+  animation-fill-mode: backwards;
+  
+}
+
+@keyframes blink{
+  0%{
+    scale: 1;
+  }
+  50%{
+    scale:1.4;
+  }
+  100%{
+    scale: 1;
+  }
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+  padding: 0;
+} 
+
+.house-box, .character-box {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center ;
+  background-color: teal;
+  box-shadow: 5px 5px 20px;
+  
+  
+}
+.character-wrapper, .house-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-color: inherit;
+  scrollbar-width: thin;
+  height: 100%;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 4rem;
+}
+
+.character, .house {
+  width: 80%;
+  background-color: inherit;
+  margin:1rem 0;
+}
+
+
+
+
+/*House section*/
+
+.house-box img, .character-box img {
+  width:100%;
+  border-radius:4px;
+}
+
+.house {
+  margin: 1rem 0;
+}
+
+
+
+
+
+
+
+
+
+/*character information section*/
+.info-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
+  border-radius: 8px;
+  background-color:#bbb;
+  animation-name: grow;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+}
+@keyframes grow{
+  from{
+    scale: 0.6;
+    opacity: 0;
+  }
+  to{
+    scale: 1;
+    opacity: 1;
+  }
+}
+.char-info {
+  text-align: left;
+  width: 100%;
+  height: 80%;
+  padding: 1em;
+  position: relative;
+}
+
+.text-container{
+  
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.pic-container{
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#img {
+  border-radius:60%;
+  width: 80%;
+}
+.pic-box{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content:center;
+}
+
+
+img{
+  height:100%;
+  width:100%;
+  object-fit: cover;
+  object-position: center;
+}
+.title-box{
+  display: flex;
+  flex-direction: column;
+  background-color:  #777;
+  border-radius:8px;
+  transition: 200ms all linear;
+  
+  width: 80%;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 20px;
+}
+#title-list{
+  display:none;
+  order: -1;
+  visibility: hidden;
+}
+#title-list ul{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#title{
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+}
+.title-box:hover{
+  height:fit-content;
+}
+.title-box:hover #title-list{
+  visibility: visible;
+  display: block;
+}
+
+/*Character selection*/
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:700px){
+
+
+  .content{
+    height: 95vh;
+    width: 80vw;
+  }
+  /*Common classes*/
+  .content {
+    flex-direction: column;
+  }
+  .character-box, .info-box, .house-box {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .house-box, .character-box {
+    height: 20%;
+  }
+  .character, .house {
+    min-width: 100px;
+    min-height: 100px;
+    margin: auto 1rem;
+
+  }
+  .character-wrapper, .house-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: auto;
+    max-height:100px;
+  }
+
+
+
+
+
+
+
+  /*Character information section*/
+  .info-box {
+    height: 40%;
+    align-items: center;
+    justify-content: center;
+  }
+  .char-pic{
+    width: 100%;
+    height: 100%;
+    font-size: 0.5rem;
+  }
+  .text-container{
+    height: 100%;
+  }
+
+  .pic-container{
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:center ;
+  }
+  .pic-box {
+    width: 80%;
+  }
+
+
+
+
+
+
+  /*Character selection*/
+  .character-box {
+    height: 20%;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+  
+  
+}
+
