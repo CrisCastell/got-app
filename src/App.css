@@ -234,13 +234,14 @@ img{
   display:none;
   order: -1;
   visibility: hidden;
+  padding: 0.5rem;
 }
 #title-list ul{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  list-style: none;
 }
-
 #title{
   padding: 0.25em 0.5em;
   text-align: center;
