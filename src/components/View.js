@@ -11,6 +11,7 @@ function View(props) {
            </div> 
            <div className="text-container">
                 <div className="char-info box">
+                    
                     <h2>{props.first} {props.last}</h2>
                     <p><strong>Age:</strong> {props.age} years old (8th season)</p>
                     <p><strong>Status:</strong> {props.status}</p>
